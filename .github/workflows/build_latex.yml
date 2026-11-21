@@ -1,8 +1,5 @@
 name: Build LaTeX document
 on: [push]
-defaults:
-  run:
-    working-directory: ./memoria
 jobs:
   build_latex:
     runs-on: ubuntu-latest
@@ -12,6 +9,7 @@ jobs:
       - name: Compile LaTeX document
         uses: xu-cheng/latex-action@v4
         with:
+          working_directory: memoria/ 
           root_file: main.tex
       - name: Upload PDF file
         uses: actions/upload-artifact@v6
