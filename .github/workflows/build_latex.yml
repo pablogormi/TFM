@@ -1,11 +1,11 @@
 name: Build LaTeX document
 on: [push]
+defaults:
+  run:
+    working-directory: ./memoria
 jobs:
   build_latex:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./memoria
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v6
