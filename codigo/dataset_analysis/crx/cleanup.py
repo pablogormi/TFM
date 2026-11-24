@@ -163,6 +163,9 @@ class CrxPreprocessor:
         text_columns = [] if self.one_hot else list(CLEAN_NOMINAL)
         for col in [c for c in out.columns if c != TARGET and c not in text_columns]:
             out[col] = out[col].astype(float)
+        # Dejamos el objetivo al final porque TINTOlib lo toma de la última columna.
+        if TARGET in out.columns:
+            out = out[[c for c in out.columns if c != TARGET] + [TARGET]]
         return out
 
     def fit_transform(self, train):
