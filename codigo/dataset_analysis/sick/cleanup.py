@@ -170,6 +170,9 @@ class SickPreprocessor:
             out = one_hot_encode(out)
         for col in [c for c in out.columns if c != CLEAN_TARGET]:
             out[col] = out[col].astype(float)
+        # Dejamos el objetivo al final porque TINTOlib lo toma de la última columna.
+        if CLEAN_TARGET in out.columns:
+            out = out[[c for c in out.columns if c != CLEAN_TARGET] + [CLEAN_TARGET]]
         return out
 
     def fit_transform(self, train):
